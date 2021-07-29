@@ -398,10 +398,10 @@ MigrationBackup/
 
 
 # MariaDB
-mariadb/dbdata
+mariadb/dbdata/*
 
 # MQTT Broker
-mqtt-broker/mosquitto-logs
-mqtt-broker/mosquitto-data
+mqtt-broker/mosquitto-logs/*
+mqtt-broker/mosquitto-data/*
 mqtt-broker/mosquitto.passwd
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,react,vs,visualstudiocode
