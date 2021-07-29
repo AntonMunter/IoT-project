@@ -3,8 +3,11 @@ import config
 from network import WLAN
 import machine
 import sleeper
+import pycom
+
 
 def connectToWifi():
+    pycom.rgbled(0x7f7f00) # Yellow
     wlan = WLAN(mode=WLAN.STA)
     for y in range(0, 9):
         print("Searching for network")
