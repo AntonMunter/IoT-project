@@ -100,4 +100,5 @@ while True:
         connectToBroker()
     else:
         print("Successfully published to broker")
+
     time.sleep(config.MQTT_SEND_RATE_SEC)
