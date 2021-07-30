@@ -11,21 +11,11 @@ h1, h2, h3, h4, h5, h6, p, a, ul, li {
 }
 
 
-@media (max-width: 600px) {
-  .header {
-      flex-wrap: wrap;
-  }
-  nav {
-    order: 2;
-    width: 100%;
-  }
-}
 
 .header {
   background: $headerBackground;
   color: $orange;
   display: flex;
-
   align-items: center;
 }
 
@@ -40,8 +30,7 @@ nav {
   ul {
     list-style: none;
     display: flex;
-    margin: 0;
-    margin-left: 100px;
+    margin: 20px;
     padding: 0;
   }
   a {
@@ -107,3 +96,36 @@ nav {
 	opacity: 0;	
 	transform: scale(0.1, 1);
 }
+
+.content {
+	height: fit-content;
+}
+
+
+@media (max-width: 725px) {
+	.header {
+		flex-wrap: wrap;
+	}
+	nav {
+	  order: 2;
+	  width: 100%;
+  
+	}
+  }
+
+  @media (max-width: 600px) {
+	.header {
+		flex-wrap: wrap;
+		flex-direction: column;
+	}
+	nav {
+	  order: 2;
+	  width: 100%;
+
+	  ul {
+		flex-direction: column;
+  		align-items: center;
+	  }
+  
+	}
+  }

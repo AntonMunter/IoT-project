@@ -7,5 +7,12 @@
 
 .moist-chart {
     width: 70%;
-    height: 800px;
+    height: 1000px;
 }
+
+@media (max-width: 725px) {
+    .moist-chart {
+        width: 90%;
+        height: 400px;
+    }
+  }

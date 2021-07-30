@@ -29,7 +29,7 @@ const theme = {
   }
 }
 
-const timeout = 1000 * 10
+const timeout = 1000 * 60
 
 const Moist = () => {
   const [data, setData] = useState([{
@@ -50,7 +50,7 @@ const Moist = () => {
         let arr = []
         
         await json.map( el => (
-          arr.unshift({'x': moment(new Date(el.date)).format('MMMM Do YYYY, h:mm:ss') ,'y': el.moist_data})
+          arr.push({'x': moment(new Date(el.date)).format('MMMM Do YYYY, h:mm:ss') ,'y': el.moist_data})
         ))
 
         setData(data => [{
@@ -77,7 +77,7 @@ const Moist = () => {
         <ResponsiveLine
         data={data}
         theme={theme}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: '200', max: '2000', stacked: true, reverse: false }}
         curve="natural"

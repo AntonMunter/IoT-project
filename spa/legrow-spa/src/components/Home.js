@@ -4,7 +4,7 @@ import { ResponsiveBullet } from '@nivo/bullet'
 import "./home.scss"
 
 
-const timeout = 1000 * 10
+const timeout = 1000 * 60
 
 const Home = () => {
   const [moist, setMoist] = useState([])
@@ -78,7 +78,7 @@ const Home = () => {
         <ResponsiveBullet
         data={moist}
         layout="vertical"
-        margin={{ top: 50, right: 90, bottom: 50, left: 90 }}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         spacing={46}
         titlePosition="before"
         titleAlign="start"
@@ -95,7 +95,7 @@ const Home = () => {
         <ResponsiveBullet
         data={temp}
         layout="vertical"
-        margin={{ top: 50, right: 90, bottom: 50, left: 90 }}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         spacing={46}
         titlePosition="before"
         titleAlign="start"

@@ -31,6 +31,12 @@ def data():
 
    result = db.fetchData(size)
 
+
+   if size == 1:
+      result = db.fetchLast()
+   else:
+      result = db.fetchData(size)
+
    return jsonify(result)
 
 
