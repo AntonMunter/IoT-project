@@ -18,7 +18,7 @@ const Home = () => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-    
+        
         const json = await response.json();
         setMoist(moist => [
           {

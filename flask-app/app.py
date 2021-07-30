@@ -13,18 +13,11 @@ import os
 app = flask.Flask(__name__)
 cors = CORS(app)
 
-token = os.getenv('REACT_APP_API_TOKEN')
 
 # route to return all sensor data
 @app.route('/api/data', methods=['GET'])
 @cross_origin()
 def data():
-   if not 'Auth' in request.headers:
-      raise InvalidUsage('Unauthorized', status_code=401)
-
-   if not request.headers['Auth'] == token:
-      raise InvalidUsage('Unauthorized', status_code=401)
-
    param = request.args.get('size')
 
    if param is None:
@@ -38,10 +31,6 @@ def data():
 
    result = db.fetchData(size)
 
-   # return the results!
-   # response = { "success" : True}
-   # response.headers.add("Access-Control-Allow-Origin", "*")
-   # response.body = jsonify(result)
    return jsonify(result)
 
 

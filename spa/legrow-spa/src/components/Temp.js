@@ -39,7 +39,6 @@ const Temp = () => {
     "data": []
 }])
 
-  console.log(data)
 
   useEffect(() => {
     async function fetch() {
