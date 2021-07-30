@@ -26,6 +26,11 @@ def fetchData(size):
     # execute a SQL statement
     query = f"select * from data ORDER BY id DESC LIMIT {size}"
 
+    avgQuery = f"select date_format(date,'%e %M %Y %H:%i') as date,
+        avg(moist_data) as moist_data
+                    from data
+                group by date_format(date,'%H');"
+
     try: 
         cur.execute(query) 
     except mariadb.Error as e: 
