@@ -104,11 +104,8 @@ services:
         image: proxy
         depends_on:
             - express
-        environment:
-            PROXY_HOST1: lemunter.com
-            PROXY_HOST2: 'www.lemunter.com'
-            PROXY_PORT1: 80
-            PROXY_PORT2: 443
+        env_file:
+            - .env.local
         volumes:
             - ~/py/proxy/includes:/etc/nginx/includes
             - ~/py/proxy/ssl:/etc/ssl
