@@ -43,18 +43,18 @@ A JST PH 4-Pin to Male Header Cable is used to connect the sensor to the LoPy bo
 
 A table containing the price and links to all necessary equipment can be found below.
 
-|             Item                           |  Price |                                         Link                                        |
-|:------------------------------------------:|:------:|:-----------------------------------------------------------------------------------:|
-|            LoPy4                           | €38.45 | https://pycom.io/product/lopy4/                                                     |
-|     Expansion Board 3.0                    | €17.60 | https://pycom.io/product/expansion-board-3-0/                                       |
-| Adafruit STEMMA soil sensor                | €6.31  | https://www.adafruit.com/product/3955                                               |
-|      JST PH 4-Pin to Male Header Cable     |  €1.26 | https://www.adafruit.com/product/3955                                               |
+|             Item                                                         |  Price |
+|:------------------------------------------------------------------------:|:------:|
+|[LoPy4](https://pycom.io/product/lopy4/)                                  | €38.45 |
+|[Expansion Board 3.0](https://pycom.io/product/expansion-board-3-0/)      | €17.60 |
+|[Adafruit STEMMA soil sensor](https://www.adafruit.com/product/3955)      | €6.31  |
+|[JST PH 4-Pin to Male Header Cable](https://www.adafruit.com/product/3955)|  €1.26 |
+|<b>Total Cost</b>                                                         | €63.62 |
 
-<b>Total Cost: €63.62</b>  
-
+*Fig 1 - Materials list*
 
 ## Computer setup
-### For the __Easy__ part
+#### For __Easy__ part
 
 The device is programmed using Atom. (https://atom.io/) 
 
@@ -75,21 +75,27 @@ The tool should have preselected the correct port.
 * Unplug and plug the USB into the computer.
 The device should now be flashed to the correct firmware.
 
-### For the __Hard__ part
+#### For __Hard__ part
 
 The platform will be developed on remote server in the cloud (not necessary but it comes with some bonuses and is easier in my opinion).
 
 Choose a cloud service provider and start a server (minimum 2GB of memory)
 
-For this project I have used an AWS EC2 server of type t3.small with 2GB of memory and 30GB of storage running ubuntu 20.04.
+For this project I used an AWS EC2 server of type t3.small including 2GB of memory and 30GB of storage running ubuntu 20.04.
+Spin up the server and open the ports TCP 80 and TCP 443. These will be used to connect to the front-end application. 
+Also make sure port 22 is open (recommended you only keep it open for your own ip-address), this port is used to connect to the server remotely using SSH.
 
-Connect to the server with SSH and update the system.
+AWS uses security groups to open ports, but the method of opening ports varies between platforms so check the documentation of your chosen platform.  
+
+Now connect to the server using SSH.
+<br>Once inside the server, start by updating it using the following commands.
 ```shell=
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y
 sudo reboot
 ````
 
-* Reconnect to the remote server
+Reconnect to the remote server
+
 * Install docker
 ```shell=
 sudo apt-get update
@@ -138,11 +144,13 @@ Now you should have 4 loose pin cables ready to connect to the board as describe
 * White: This is the SDA data cable and should be connected to pin 9.
 * Green: This is the SCL clock cable and should be connected to pin 10.
 
-![GitHub Logo](/circuit_diagram.png)
-Format: ![Alt Text](url)
+![circuit diagram](/circuit_diagram.png)
+*Fig 2 - Circuit diagram*
+
+That’s it, no resistors needed for this project! 
 
 # Platform
-
+#### For __Easy__ part
 
 ## Explain your code!
 Transmitting the data / connectivity
