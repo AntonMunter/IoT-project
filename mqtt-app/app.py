@@ -22,12 +22,10 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    # msg.payload = msg.payload.decode("utf-8")
     msg.payload = msg.payload.decode("utf-8")
     data = json.loads(msg.payload)
-    moisture_data = int(data['moisture'])
+    moisture_data = int(data['value'])
     temp_data = float(data['temp'])
-    print(data)
     db.insert(moisture_data, temp_data)
 
 
@@ -41,6 +39,4 @@ client.connect(host, port, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
 client.loop_forever()

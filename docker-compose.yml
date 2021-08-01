@@ -35,19 +35,19 @@ services:
         networks:
             - app-network
 
-    spa:
-        image: spa-app:latest
+    express:
+        image: express-app:latest
         restart: always
         links:
             - "flask:flask"
         depends_on:
             - flask
         volumes:
-            - ~/py/spa/legrow-spa/:/app/
+            - ~/py/express-app/src:/app/src
         env_file: 
-            - all_var.env
+            - .env.local
         ports: 
-            - 3000:3000
+            - 9000:9000
         networks:
             - app-network
   
@@ -98,7 +98,22 @@ services:
         restart: unless-stopped
         networks:
             - app-network
+    
 
+    proxy:
+        image: proxy
+        depends_on:
+            - express
+        env_file:
+            - .env.local
+        volumes:
+            - ~/py/proxy/includes:/etc/nginx/includes
+            - ~/py/proxy/ssl:/etc/ssl
+        ports:
+            - 443:443
+        networks:
+            - app-network
+    
     
 
 volumes:
