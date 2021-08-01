@@ -30,7 +30,7 @@ const theme = {
   }
 }
 
-const timeout = 1000*60*10
+const timeout = 1000*60
 
 const Temp = () => {
   const [data, setData] = useState([{
