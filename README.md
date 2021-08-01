@@ -138,7 +138,7 @@ Now you should have 4 loose pin cables ready to connect to the board as describe
 * White: This is the SDA data cable and should be connected to pin 9.
 * Green: This is the SCL clock cable and should be connected to pin 10.
 
-![GitHub Logo](/circuit_diagram.pdf)
+![GitHub Logo](/circuit_diagram.png)
 Format: ![Alt Text](url)
 
 # Platform
