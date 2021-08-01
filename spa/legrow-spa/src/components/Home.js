@@ -4,7 +4,7 @@ import { ResponsiveBullet } from '@nivo/bullet'
 import "./home.scss"
 
 
-const timeout = 1000 * 60
+const timeout = 6000
 
 const Home = () => {
   const [moist, setMoist] = useState([])

@@ -12,6 +12,9 @@ COPY ./package-lock.json ./
 # install app dependencies.
 COPY . .
 
+ENV CHART_FETCH_TIMEOUT_MS=a
+ENV HOME_FETCH_TIMEOUT_MS=a
+
 RUN npm install
 
 RUN npm run build
