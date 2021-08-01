@@ -113,11 +113,6 @@ services:
             - 443:443
         networks:
             - app-network
-
-    grafana:
-        image: grafana/grafana:5.1.0
-        ports:
-            - 3000:3000
     
     
 
