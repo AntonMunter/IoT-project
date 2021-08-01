@@ -344,7 +344,7 @@ The LED will light up in green to show that the device is in this state.
 First, the mqtt payload will be collected using the getAvarage() function described earlier.
 With the data collected, it will try to publish the data to the broker. A printout will then show if the message was successfully sent before finally going into deep sleep for a set amount of time.
 
-## How often is the data sent?
+## Transmitting the data / connectivity
 The data is sent via a WiFi connection at a rate of about once every 10minutes.
 The transport protocol used is MQTT and each message is packaged as a string, and parsed as JSON on the broker end.
 
