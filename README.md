@@ -121,10 +121,25 @@ To be able to code inside the  Visual Studio Code  (https://code.visualstudio.co
 
 * Install and run VS Code.
 * Install the plugin "Remote Development"
-* 
+
+Everything should now be ready for development.
 
 
 # Putting everything together
+With the development environment in place, it is time to focus on connecting the hardware.
+
+Start by connecting the LoPy to the expansion board. Make sure to align the LoPy so that the LED is in the same direction as the USB-connector of the expansion board. Push it in fully until you hear it click.
+
+Connect the male header connector to the female header on the STEMMA soil sensor.
+Now you should have 4 loose pin cables ready to connect to the board as described below.
+
+* Black: This is the ground cable and should be connected to the ground pin.
+* Red: This is the DC power cable and should be connected to the 3V3 pin.
+* White: This is the SDA data cable and should be connected to pin 9.
+* Green: This is the SCL clock cable and should be connected to pin 10.
+
+![GitHub Logo](/circuit_diagram.pdf)
+Format: ![Alt Text](url)
 
 # Platform
 
