@@ -7,9 +7,9 @@ import pycom
 
 
 def connectToWifi():
-    pycom.rgbled(0x7f7f00) # Yellow
+    pycom.rgbled(0x7f0000) # Yellow
     wlan = WLAN(mode=WLAN.STA)
-    for y in range(0, 9):
+    for cycles in range(10):
         print("Searching for network")
         nets = wlan.scan()
 
@@ -26,6 +26,6 @@ def connectToWifi():
             return wlan
 
         print("Could not find network")
-        time.sleep(10)
+        time.sleep(20)
     # Go to deepsleep after failing a set amount of connections.
     sleeper.goToSleep(config.SLEEPTIME_WIFI_MS)
