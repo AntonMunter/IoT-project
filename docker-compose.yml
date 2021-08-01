@@ -1,0 +1,134 @@
+version: "3.3"
+services:
+    mqtt:
+        image: mqtt-app:latest
+        restart: always
+        links:
+            - "mariadb:db"
+            - "mosquitto:mq"
+        depends_on:
+            - mariadb
+            - mosquitto
+        env_file:
+            - .env.local
+        volumes:
+            - ~/py/mqtt-app/:/code
+        networks:
+            - app-network   
+
+    flask:
+        image: flask-app:latest
+        restart: always
+        links:
+            - "mariadb:db"
+            - "mosquitto:mq"
+        depends_on:
+            - mariadb
+            - mosquitto
+            - mqtt
+        volumes:
+            - ~/py/flask-app/:/code
+        env_file: 
+            - .env.local
+        ports: 
+            - 5000:5000
+        networks:
+            - app-network
+
+    express:
+        image: express-app:latest
+        restart: always
+        links:
+            - "flask:flask"
+        depends_on:
+            - flask
+        volumes:
+            - ~/py/express-app/src:/app/src
+        env_file: 
+            - .env.local
+        ports: 
+            - 9000:9000
+        networks:
+            - app-network
+  
+    mariadb:
+        image: mariadb
+        restart: always
+        command: 
+            --init-file /data/application/init.sql
+        volumes:
+            - ~/py/mariadb/dbdata:/var/lib/mysql
+            - ~/py/mariadb/init/init.sql:/data/application/init.sql
+        env_file:
+            - .env.local
+        ports: 
+            - 3306:3306
+        networks:
+          - app-network
+    
+    adminer:
+        image: adminer
+        restart: always
+        depends_on:
+            - mariadb
+        environment:
+            ADMINER_DEFAULT_SERVER: mariadb
+            ADMINER_DEFAULT_DB_DRIVER: mysql
+            ADMINER_DEFAULT_DB_HOST: mariadb
+            ADMINER_DEFAULT_DB_NAME: legrow
+            ADMINER_DESIGN: nette
+            ADMINER_PLUGINS: tables-filter tinymce
+        ports:
+            - 8080:8080
+        networks:
+            - app-network
+          
+    mosquitto:
+        image: eclipse-mosquitto
+        restart: always
+        ports:
+            - 1883:1883
+        volumes:
+            - ~/py/mqtt-broker/mosquitto-data:/mosquitto/data
+            - ~/py/mqtt-broker/mosquitto-logs:/mosquitto/logs
+            - ~/py/mqtt-broker/mosquitto-conf:/mosquitto/config
+            - ~/py/mqtt-broker/mosquitto.passwd:/mosquitto/config/mosquitto.passwd
+        env_file:
+            - .env.local
+        restart: unless-stopped
+        networks:
+            - app-network
+    
+
+    proxy:
+        image: proxy
+        depends_on:
+            - express
+        env_file:
+            - .env.local
+        volumes:
+            - ~/py/proxy/includes:/etc/nginx/includes
+            - ~/py/proxy/ssl:/etc/ssl
+        ports:
+            - 443:443
+        networks:
+            - app-network
+    
+    
+
+volumes:
+    mosquitto-data:
+        driver: local
+    mosquitto-logs:
+        driver: local
+    mosquitto-conf:
+        driver: local
+    mosquitto-:
+        driver: local
+    dbdata:
+        driver: local
+
+networks:
+    app-network:
+        driver: bridge
+          

@@ -1,0 +1,131 @@
+$orange:     #f67600;
+$background: #E8EBF0;
+$grayText:   #767d88;
+$headerBackground: #FFF;
+$lh:         50px;
+$navHeight: 100px;
+
+h1, h2, h3, h4, h5, h6, p, a, ul, li {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 800;
+}
+
+
+
+.header {
+  background: $headerBackground;
+  color: $orange;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  text-decoration: none;
+  color: $orange;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  padding-left: 10px;
+}
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 20px;
+    padding: 0;
+  }
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .active span {
+    color: $orange;
+    letter-spacing: 3px;
+  }
+}
+
+.btn {
+  line-height: 50px;
+	height: 50px;
+	text-align: center;
+	width: 200px;
+	cursor: pointer;
+	color: $grayText;
+	transition: all 0.3s;
+	position: relative;
+}
+.btn span {
+	transition: all 0.3s;
+}
+.btn::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: $orange;
+	border-bottom-color: $orange;
+	transform: scale(0.1, 1);
+}
+.btn:hover span {
+	letter-spacing: 3px;
+}
+.btn:hover::before {
+	opacity: 1;	
+	transform: scale(1, 1);	
+}
+.btn::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	transition: all 0.3s;
+	background-color: rgba(255,255,255,0.1);
+}
+.btn:hover::after {
+	opacity: 0;	
+	transform: scale(0.1, 1);
+}
+
+.content {
+	height: fit-content;
+}
+
+
+@media (max-width: 725px) {
+	.header {
+		flex-wrap: wrap;
+	}
+	nav {
+	  order: 2;
+	  width: 100%;
+  
+	}
+  }
+
+  @media (max-width: 600px) {
+	.header {
+		flex-wrap: wrap;
+		flex-direction: column;
+	}
+	nav {
+	  order: 2;
+	  width: 100%;
+
+	  ul {
+		flex-direction: column;
+  		align-items: center;
+	  }
+  
+	}
+  }

@@ -1,0 +1,30 @@
+.home-box {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+
+.home-moist-chart {
+    width: 40%;
+    height: 1000px;
+}
+.home-temp-chart {
+    width: 40%;
+    height: 1000px;
+}
+
+@media (max-width: 725px) {
+    .home-box {
+        margin: 0px;
+    }
+
+    .home-moist-chart {
+        width: 50%;
+        height: 400px;
+    }
+    .home-temp-chart {
+        width: 50%;
+        height: 400px;
+    }
+  }
